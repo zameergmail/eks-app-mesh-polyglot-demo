@@ -17,7 +17,7 @@ detail:
 
   service:
     type: ClusterIP
-    targetPort: 3000
+    targetPort: 4.00
 
   ingress:
     enabled: false
@@ -36,7 +36,7 @@ detail:
   livenessProbe:
     enabled: true
     path: /ping
-    port: 3000
+    port: 4.00
     initialDelaySeconds: 5
     periodSeconds: 5
     timeoutSeconds: 1
@@ -51,7 +51,7 @@ detail:
     successThreshold: 1
   startupProbe:
     enabled: false
-  #   port: 3000
+  #   port: 4.00
   #   path: /ping
   #   initialDelaySeconds: 10
   #   periodSeconds: 10
@@ -61,14 +61,14 @@ detail:
 
   env:
     - name: AWS_XRAY_DAEMON_ADDRESS
-      value: xray-service.default:3.00
+      value: xray-service.default:4.00
       
   resources:
     limits:
       cpu: 500m
       memory: 512Mi
     requests:
-      cpu: 3.0m
+      cpu: 4.0m
       memory: 512Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -152,9 +152,9 @@ catalog:
     
   env:
     - name: AGG_APP_URL
-      value: "http://proddetail.workshop:3000/catalogDetail"
+      value: "http://proddetail.workshop:4.00/catalogDetail"
     - name: AWS_XRAY_DAEMON_ADDRESS
-      value: xray-service.default:3.00
+      value: xray-service.default:4.00
     - name: DATABASE_SERVICE_URL
       value: mysql.workshop
       
@@ -184,7 +184,7 @@ frontend:
 
   image:
     repository: 009444842660.dkr.ecr.us-east-1.amazonaws.com/eks-app-mesh-demo/frontend_node
-    tag: "3.0"
+    tag: "4.0"
     pullPolicy: Always
 
   nameOverride: ""
@@ -245,7 +245,7 @@ frontend:
     - name: BASE_URL
       value: "http://prodcatalog.workshop:5000/products/"
     - name: AWS_XRAY_DAEMON_ADDRESS
-      value: xray-service.default:3.00
+      value: xray-service.default:4.00
     
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
